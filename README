@@ -1,0 +1,19 @@
+0. This is a test project written in 
+purpose to comply with the requirements
+stated in README.md
+
+1. Building:
+  cd src
+  make
+
+2. Usage:
+  echo "22 144" | ./romannum
+  -or-
+  interactively enter numbers you want to get converted to roman numberals
+  Program will exit as soon as it meets the end of a stream or an incorrect data  
+
+3. If you want to run conversion function unit tests:
+  cd src
+  make test 
+
+
