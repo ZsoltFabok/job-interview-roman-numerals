@@ -8,17 +8,30 @@ public class RomanNumeralsConvert {
 	public final static String tensArray[] = { "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC" };
 	public final static String hundredsArray[] = { "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM" };
 
+	public final static String TEST_MOD = "-test";
+	public final static String ONE = "I";
+	public final static String TWELVE = "XII";
+	public final static String ONE_HUNDRED_AND_THREE = "CIII";
+
 	private static String[] numArray;
 
 	public static void main(String[] args) {
 
-		readInput();
+		if (args.length > 0) {
+			if (args.length > 1 || !TEST_MOD.equals(args[0])) {
+				System.out.println("Only one flag supports: - test");
+			} else {
+				runTest();
+			}
+		} else {
+			readInput();
 
-		validate();
+			validate();
 
-		convert();
+			convert();
 
-		printResult();
+			printResult();
+		}
 
 	}
 
@@ -62,7 +75,7 @@ public class RomanNumeralsConvert {
 			if (numStr.contains("error")) {
 				continue;
 			}
-			
+
 			String Roman = "";
 			int num = Integer.parseInt(numStr);
 
@@ -100,5 +113,55 @@ public class RomanNumeralsConvert {
 			System.out.println(numArray[i]);
 		}
 
+	}
+
+	public static void runTest() {
+		numArray = new String[5];
+		
+		numArray[0] = "1";
+		numArray[1] = "12";
+		numArray[2] = "103";
+
+		numArray[3] = "10char3";
+		numArray[4] = "10399911";
+
+		validate();
+
+		convert();
+
+		System.out.print("1 => " + numArray[0]);
+		if (ONE.equals(numArray[0])) {
+			System.out.println(" passed.");
+		} else {
+			System.out.println(" failed.");
+		}
+
+		System.out.print("12 => " + numArray[1]);
+		if (TWELVE.equals(numArray[1])) {
+			System.out.println(" passed.");
+		} else {
+			System.out.println(" failed.");
+		}
+
+		System.out.print("103 => " + numArray[2]);
+		if (ONE_HUNDRED_AND_THREE.equals(numArray[2])) {
+			System.out.println(" passed.");
+		} else {
+			System.out.println(" failed.");
+		}
+
+		System.out.print("10char3 => " + numArray[3]);
+		if ("10char3, illegal argument error - is not valid digital number.".equals(numArray[3])) {
+			System.out.println(" passed.");
+		} else {
+			System.out.println(" failed.");
+		}
+
+		System.out.print("10399911 => " + numArray[4]);
+		if ("10399911, range bound error - number should be in the range [1 - 3999].".equals(numArray[4])) {
+			System.out.println(" passed.");
+		} else {
+			System.out.println(" failed.");
+		}
 	}
 }
